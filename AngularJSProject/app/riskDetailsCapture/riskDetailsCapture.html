@@ -4,8 +4,27 @@
         <tr>
             <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}} </th>
         </tr>
-        <tr>
-            <td></td>
+        <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
+            <td> 1 </td>
+            <td>{{risk.registrationNumber}}</td>
+            <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
+            <td>{{risk.purposeOfUse.name}}</td>
+            <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
+            <td>{{risk.hullCoverage.hullCoverageEnabled}}</td>
+            <td>{{risk.hullCoverage.tloCoverageEnabled}}</td>
+            <td>{{risk.hullCoverage.hullWarCoverageEnabled}}</td>
+            <td>{{risk.hullCoverage.name}}</td>
+            <td>{{risk.hullCoverage.hullValue}}</td>
+            <td>{{risk.hullCoverage.tloLimit}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.liabilityCoverage.name}}</td>
+            <td>{{risk.liabilityCoverage.thirdPartyLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.name}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
         </tr>
     </table>
 </div>

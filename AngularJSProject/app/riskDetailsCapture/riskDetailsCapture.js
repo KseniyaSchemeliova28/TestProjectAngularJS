@@ -8,6 +8,6 @@ riskApp.controller('RiskDetailsCaptureCtrl', function RiskDetailsCaptureCtrl(Ris
 
     const riskDetails = RiskDetailsService.getRisks();
     riskDetails.then((risk) => {
-        this.riskDetailsCapture = risk.data;
+        this.riskDetailsCapture = risk.data.result;
     });
 });
