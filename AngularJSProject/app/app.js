@@ -1,14 +1,8 @@
-'use strict';
+var riskApp = angular.module('riskApp', ['ngRoute']).config(['$routeProvider', function ($routeProvider) {
 
-// Declare app level module which depends on views, and core components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+    $routeProvider.when('/riskDetailsCapture', {
+        templateUrl: 'riskDetailsCapture/riskDetailsCapture.html',
+        controller: 'RiskDetailsCaptureCtrl'
+    });
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
