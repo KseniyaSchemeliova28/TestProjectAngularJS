@@ -1,0 +1,45 @@
+<h1>Risk Details Capture</h1>
+<div>
+    <button style="float: right" ng-click="openEditMode($event)">Edit Mode</button>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th class="header" ng-repeat="header in headers">{{header.name}} </th>
+        </tr>
+        <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
+            <td> 1 </td>
+            <td ng-show="!riskCtrl.editMode">{{risk.registrationNumber}}</td>
+            <td ng-show="riskCtrl.editMode"> <input ng-model="risk.registrationNumber"> </td>
+
+            <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
+            <td>{{risk.purposeOfUse.name}}</td>
+            <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
+
+            <td ng-show="risk.hullCoverage.hullCoverageEnabled" class="check"></td>
+            <td ng-hide="risk.hullCoverage.hullCoverageEnabled"></td>
+
+            <td ng-show="risk.hullCoverage.tloCoverageEnabled" class="check"></td>
+            <td ng-hide="risk.hullCoverage.tloCoverageEnabled"></td>
+
+            <td ng-show="risk.hullCoverage.hullWarCoverageEnabled && !riskCtrl.editMode" class="check"></td>
+            <td ng-hide="risk.hullCoverage.hullWarCoverageEnabled || riskCtrl.editMode"></td>
+            <td ng-if="riskCtrl.editMode"> <input type="checkbox" class="checkbox" ng-model="risk.hullCoverage.hullWarCoverageEnabled"> </td>
+            <td>{{risk.hullCoverage.currency.name}}</td>
+
+            <td ng-show="!riskCtrl.editMode">{{risk.hullCoverage.hullValue}}</td>
+            <td ng-show="riskCtrl.editMode"> <input type="number" ng-model="risk.hullCoverage.hullValue"> </td>
+
+            <td>{{risk.hullCoverage.tloLimit}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+            <td>{{risk.liabilityCoverage.currency.name}}</td>
+            <td>{{risk.liabilityCoverage.thirdPartyLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.currency.name}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+        </tr>
+    </table>
+</div>
