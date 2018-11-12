@@ -1,24 +1,22 @@
-.header{
+.header {
   padding: 7px 17px 7px 3px;
   background-color: #9acfea;
-
 }
-
-table, td {
+table,
+td {
   border: 5px solid white;
   min-height: 550px;
   min-width: 100%;
 }
-
 input {
   width: 70px;
 }
-
 .checkbox {
   width: 40px;
   height: 10px;
 }
-.check{
+.check {
   background: url('../assets/images/ok.png') center no-repeat;
   background-size: 15px 15px;
 }
+/*# sourceMappingURL=risk-details-capture.component.css.map */

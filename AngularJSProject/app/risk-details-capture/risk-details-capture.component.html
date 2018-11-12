@@ -42,4 +42,9 @@
             <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
         </tr>
     </table>
+    <div style="width: 10%; margin: 0 auto;">
+        <button ng-click="riskCtrl.onClickedPage('previous')">Назад</button>
+        <button ng-repeat="page in riskCtrl.pages" ng-click="riskCtrl.onClickedPage(page)">{{page}}</button>
+        <button ng-click="riskCtrl.onClickedPage('next')">Вперед</button>
+    </div>
 </div>

@@ -11,12 +11,50 @@ class riskDetailsCaptureController {
 
         this.editMode = false;
         const riskDetails = this._riskService.getRisks();
+        this.currentPage = 0;
         riskDetails.then((risk) => {
-            this.riskDetailsCapture = risk.data.result;
+            this.riskDetailsCapture = risk.data.result.slice(this.currentPage * 10, this.currentPage * 10 + 10);
+            this.numberOfPage = risk.data.result.length / 10;
+            this.pages = [];
+            let i = 0;
+            while (i < this.numberOfPage) {
+                this.pages.push(i);
+                i++;
+            }
         });
-        this.openEditMode = function (e) {
+
+        this.getRiskDetails = () => {
+            riskDetails.then((risk) => {
+                this.riskDetailsCapture = risk.data.result.slice(this.currentPage * 10, this.currentPage * 10 + 10);
+                this.numberOfPage = risk.data.result.length / 10;
+                this.pages = [];
+                let i = 0;
+                while (i < this.numberOfPage) {
+                    this.pages.push(i);
+                    i++;
+                }
+            });
+        };
+
+
+        this.onClickedPage = (number) => {
+            if (number >= 0) {
+                this.currentPage = number;
+                this.getRiskDetails();
+            } else if (this.currentPage > 0 && number === 'previous') {
+                this.currentPage--;
+                this.getRiskDetails();
+            } else if (this.currentPage < this.numberOfPage-1 && number === 'next') {
+                this.currentPage++;
+                this.getRiskDetails();
+            }
+
+        };
+
+        this.openEditMode = (e) => {
             this.editMode = !this.editMode;
         }
+
     }
 }
 
