@@ -11,9 +11,17 @@ td {
 input {
   width: 70px;
 }
+.button-edit-mode {
+  float: right;
+  margin-right: 10px;
+}
+.paging {
+  width: 10%;
+  margin: 0 auto;
+}
 .checkbox {
   width: 40px;
-  height: 10px;
+  height: 14px;
 }
 .check {
   background: url('../assets/images/ok.png') center no-repeat;

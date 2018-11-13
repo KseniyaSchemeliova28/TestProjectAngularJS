@@ -1,17 +1,6 @@
-
-# compiled output
-/dist
-/tmp
-/out-tsc
-
-# dependencies
-/node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+.idea

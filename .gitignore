@@ -1,0 +1,6 @@
+logs/*
+!.gitkeep
+AngularJSProject/node_modules/
+tmp
+.DS_Store
+AngularJSProject/.idea

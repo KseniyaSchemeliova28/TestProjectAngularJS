@@ -1,4 +1,4 @@
-class riskDetailsCaptureController {
+class riskDetailsCaptureController{
     constructor(riskDetailsCaptureService) {
         'ngInject'
         this.name = 'riskDetailsCapture';
@@ -9,6 +9,7 @@ class riskDetailsCaptureController {
             {name: "Hull Deduction"}, {name: "Hull War Deductions"}, {name: "Liab CCy"}, {name: "Liab Limit"},
             {name: "PA: Ccy"}, {name: "PA Limit"}, {name: "AVN 52E DED"}, {name: "Liability Deduction"}];
 
+        this.riskDetailsCapture = [];
         this.editMode = false;
         const riskDetails = this._riskService.getRisks();
         this.currentPage = 0;
@@ -22,39 +23,44 @@ class riskDetailsCaptureController {
                 i++;
             }
         });
+    }
 
-        this.getRiskDetails = () => {
-            riskDetails.then((risk) => {
-                this.riskDetailsCapture = risk.data.result.slice(this.currentPage * 10, this.currentPage * 10 + 10);
-                this.numberOfPage = risk.data.result.length / 10;
-                this.pages = [];
-                let i = 0;
-                while (i < this.numberOfPage) {
-                    this.pages.push(i);
-                    i++;
-                }
-            });
-        };
-
-
-        this.onClickedPage = (number) => {
-            if (number >= 0) {
-                this.currentPage = number;
-                this.getRiskDetails();
-            } else if (this.currentPage > 0 && number === 'previous') {
-                this.currentPage--;
-                this.getRiskDetails();
-            } else if (this.currentPage < this.numberOfPage-1 && number === 'next') {
-                this.currentPage++;
-                this.getRiskDetails();
-            }
-
-        };
-
-        this.openEditMode = (e) => {
-            this.editMode = !this.editMode;
+    onClickedPage(number) {
+        if (number >= 0) {
+            this.currentPage = number;
+        } else if (this.currentPage > 0 && number === 'previous') {
+            this.currentPage--;
+        } else if (this.currentPage < this.numberOfPage-1 && number === 'next') {
+            this.currentPage++;
         }
+        this.getRiskDetails();
+    };
 
+    openEditMode(e) {
+        this.editMode = !this.editMode;
+    };
+
+    saveRiskDetails(){
+        this._riskService.saveRisks(this.riskDetailsCapture);
+        this.editMode=!this.editMode;
+    };
+
+    exitWithoutChanges(){
+        if(confirm('You are about to leave the page. Unsaved data will be lost. Do you want to proceed?')){
+            this.editMode=!this.editMode;
+        }
+        this.getRiskDetails();
+    };
+
+    getRiskDetails() {
+        this.riskDetailsCapture =this._riskService.getLoadedRisks().slice(this.currentPage * 10, this.currentPage * 10 + 10);
+        this.numberOfPage = this._riskService.getLoadedRisks().length / 10;
+        this.pages = [];
+        let i = 0;
+        while (i < this.numberOfPage) {
+            this.pages.push(i);
+            i++;
+        }
     }
 }
 
