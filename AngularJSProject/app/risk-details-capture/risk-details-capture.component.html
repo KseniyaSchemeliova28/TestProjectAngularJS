@@ -11,11 +11,12 @@
         </tr>
         <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
             <td> 1 </td>
+            // COMMENT: Table should know nothing about RDC Model. For this purpose you need to use double 'ng-repeat' and cell types
             <td ng-show="!riskCtrl.editMode">{{risk.registrationNumber}}</td>
             <td ng-show="riskCtrl.editMode"> <input ng-model="risk.registrationNumber"> </td>
-
+                
             <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
-            <td>{{risk.purposeOfUse.name}}</td>
+            <td>{{risk.purposeOfUse.name}}</td> 
             <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
 
             <td ng-show="risk.hullCoverage.hullCoverageEnabled" class="check"></td>
