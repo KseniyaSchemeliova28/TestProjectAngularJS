@@ -11,6 +11,7 @@
   "dependencies": {
     "angular": "^1.7.5",
     "angular-ui-router": "^1.0.20",
+    "bootstrap": "^3.3.7",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",

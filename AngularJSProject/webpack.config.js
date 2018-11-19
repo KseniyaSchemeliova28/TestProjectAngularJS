@@ -26,6 +26,7 @@ module.exports = (_path, argv = {}) => {
             filename: '[name].bundle.js?hash=[chunkhash]'
         },
 
+
         module: {
             rules: [
                 {
@@ -75,24 +76,29 @@ module.exports = (_path, argv = {}) => {
                     use: isTest ? 'ignore-loader' :
                         [
                             {
-                            loader: 'style-loader'
-                        }, {
+                                loader: 'style-loader'
+                            }, {
                             loader: 'css-loader'
                         }, {
                             loader: 'less-loader'
                         }]
+                },
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader']
                 }
             ]
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './index.html'
+                template: './index.html',
+                extraFiles: {
+                    css: 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+                }
             }),
             new CopyWebpackPlugin([
-                {from: 'assets/test-data', to: 'assets/test-data'},
-
+                {from: 'assets/test-data', to: 'assets/test-data'}
             ])
-
         ],
         devtool: "#inline-source-map"
     };

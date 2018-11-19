@@ -18,7 +18,7 @@ export default  class riskDetailsCaptureService {
 
     saveRisks(riskDetailsPage) {
         riskDetailsPage.forEach((riskDetails)=> {
-            var risk = this.riskDetailsCapture.find(y => y.aircraftId === riskDetails.aircraftId);
+            let risk = this.riskDetailsCapture.find(y => y.aircraftId === riskDetails.aircraftId);
             if(risk) {
                 risk = riskDetails;
             }

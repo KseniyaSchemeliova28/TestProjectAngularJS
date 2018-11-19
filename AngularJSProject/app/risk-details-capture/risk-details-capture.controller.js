@@ -30,7 +30,7 @@ class riskDetailsCaptureController{
             this.currentPage = number;
         } else if (this.currentPage > 0 && number === 'previous') {
             this.currentPage--;
-        } else if (this.currentPage < this.numberOfPage-1 && number === 'next') {
+        } else if (this.currentPage <= this.numberOfPage-1 && number === 'next') {
             this.currentPage++;
         }
         this.getRiskDetails();
@@ -61,6 +61,12 @@ class riskDetailsCaptureController{
             this.pages.push(i);
             i++;
         }
+    }
+
+    getClassForPaging(page){
+        if(page === this.currentPage){
+            return 'active';
+        }else return '';
     }
 }
 

@@ -1,54 +1,82 @@
-<h1>Risk Details Capture</h1>
+<div class="row">
+    <div class="col-sm-6 col-md-offset-3"><h1>Risk Details Capture</h1></div>
+</div>
+
 <div ng-controller="riskDetailsCaptureController as riskCtrl">
-    <button ng-show="!riskCtrl.editMode" class="button-edit-mode" ng-click="riskCtrl.openEditMode($event)">Edit Mode</button>
-    <button ng-show="riskCtrl.editMode" class="button-edit-mode" ng-click="riskCtrl.saveRiskDetails()">Save</button>
-    <button ng-show="riskCtrl.editMode"  class="button-edit-mode" ng-click="riskCtrl.exitWithoutChanges()">Exit without changes</button>
-    <br>
-    <br>
-    <table>
-        <tr>
-            <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}} </th>
-        </tr>
-        <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
-            <td> 1 </td>
-            <td ng-show="!riskCtrl.editMode">{{risk.registrationNumber}}</td>
-            <td ng-show="riskCtrl.editMode"> <input ng-model="risk.registrationNumber"> </td>
+    <div class="row">
+        <div class="col-sm-2 col-md-offset-10">
+            <button ng-show="!riskCtrl.editMode" class="button-edit-mode btn-primary btn"
+                    ng-click="riskCtrl.openEditMode($event)">Edit Mode
+            </button>
+            <button ng-show="riskCtrl.editMode" class="button-edit-mode btn-info btn"
+                    ng-click="riskCtrl.saveRiskDetails()">Save
+            </button>
+            <button ng-show="riskCtrl.editMode" class="button-edit-mode btn-info btn"
+                    ng-click="riskCtrl.exitWithoutChanges()">Exit without changes
+            </button>
+        </div>
+    </div>
 
-            <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
-            <td>{{risk.purposeOfUse.name}}</td>
-            <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="risk-table">
+                <table class="table-striped table">
+                    <tr>
+                        <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}}</th>
+                    </tr>
+                    <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
+                        <td> {{$index + 1}}</td>
+                        <td ng-show="!riskCtrl.editMode">{{risk.registrationNumber}}</td>
+                        <td ng-show="riskCtrl.editMode"><input type="text" class="form-control"
+                                                               ng-model="risk.registrationNumber">
+                        </td>
 
-            <td ng-show="risk.hullCoverage.hullCoverageEnabled" class="check"></td>
-            <td ng-hide="risk.hullCoverage.hullCoverageEnabled"></td>
+                        <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
+                        <td>{{risk.purposeOfUse.name}}</td>
+                        <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
 
-            <td ng-show="risk.hullCoverage.tloCoverageEnabled" class="check"></td>
-            <td ng-hide="risk.hullCoverage.tloCoverageEnabled"></td>
+                        <td ng-show="risk.hullCoverage.hullCoverageEnabled" class="check"></td>
+                        <td ng-hide="risk.hullCoverage.hullCoverageEnabled"></td>
 
-            <td ng-show="risk.hullCoverage.hullWarCoverageEnabled && !riskCtrl.editMode" class="check"></td>
-            <td ng-hide="risk.hullCoverage.hullWarCoverageEnabled || riskCtrl.editMode"></td>
-            <td ng-if="riskCtrl.editMode">
-                <input type="checkbox" class="checkbox" ng-model="risk.hullCoverage.hullWarCoverageEnabled">
-            </td>
-            <td>{{risk.hullCoverage.currency.name}}</td>
+                        <td ng-show="risk.hullCoverage.tloCoverageEnabled" class="check"></td>
+                        <td ng-hide="risk.hullCoverage.tloCoverageEnabled"></td>
 
-            <td ng-show="!riskCtrl.editMode">{{risk.hullCoverage.hullValue}}</td>
-            <td ng-show="riskCtrl.editMode"> <input type="number" ng-model="risk.hullCoverage.hullValue"> </td>
+                        <td ng-show="risk.hullCoverage.hullWarCoverageEnabled && !riskCtrl.editMode" class="check"></td>
+                        <td ng-hide="risk.hullCoverage.hullWarCoverageEnabled || riskCtrl.editMode"></td>
+                        <td ng-if="riskCtrl.editMode">
+                            <input type="checkbox" ng-model="risk.hullCoverage.hullWarCoverageEnabled">
+                        </td>
+                        <td>{{risk.hullCoverage.currency.name}}</td>
 
-            <td>{{risk.hullCoverage.tloLimit}}</td>
-            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-            <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-            <td>{{risk.liabilityCoverage.currency.name}}</td>
-            <td>{{risk.liabilityCoverage.thirdPartyLimit}}</td>
-            <td>{{risk.personalAccidentCoverage.currency.name}}</td>
-            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
-            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
-            <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
-        </tr>
-    </table>
-    <div class="paging">
-        <button ng-click="riskCtrl.onClickedPage('previous')">Previous</button>
-        <button ng-repeat="page in riskCtrl.pages" ng-click="riskCtrl.onClickedPage(page)">{{page+1}}</button>
-        <button ng-click="riskCtrl.onClickedPage('next')">Next</button>
+                        <td ng-show="!riskCtrl.editMode">{{risk.hullCoverage.hullValue}}</td>
+                        <td ng-show="riskCtrl.editMode"><input class="form-control" type="number"
+                                                               ng-model="risk.hullCoverage.hullValue"></td>
+
+                        <td>{{risk.hullCoverage.tloLimit}}</td>
+                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+
+                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
+                        <td>{{risk.liabilityCoverage.currency.name}}</td>
+                        <td>{{risk.liabilityCoverage.thirdPartyLimit}}</td>
+                        <td>{{risk.personalAccidentCoverage.currency.name}}</td>
+                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+            <ul class="paging pagination">
+                <li><a ng-click="riskCtrl.onClickedPage('previous')">Previous</a></li>
+                <li ng-repeat="page in riskCtrl.pages" ng-class="riskCtrl.getClassForPaging(page)"><a
+                        ng-click="riskCtrl.onClickedPage(page)">{{page+1}}</a></li>
+                <li><a ng-click="riskCtrl.onClickedPage('next')">Next</a></li>
+            </ul>
+        </div>
     </div>
 </div>
