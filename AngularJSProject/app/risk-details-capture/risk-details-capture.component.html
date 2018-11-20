@@ -16,7 +16,6 @@
             </button>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="risk-table">
@@ -68,6 +67,22 @@
             </div>
         </div>
     </div>
+
+    <table class="table-striped table">
+        <thead>
+        <tr>
+            <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="r in riskCtrl.riskDetailsCapture">
+            <td ng-repeat="q in riskCtrl.headers">
+                <cell risk="r[q.property]" header="q"></cell>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 
     <div class="row">
         <div class="col-sm-2 col-sm-offset-5">

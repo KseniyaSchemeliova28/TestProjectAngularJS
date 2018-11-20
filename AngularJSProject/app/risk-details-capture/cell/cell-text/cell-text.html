@@ -1,0 +1,6 @@
+<div ng-switch="$cellTextCtrl.coll.name">
+    <div ng-switch-when="Reg No">{{$cellTextCtrl.risk}}</div>
+    <div ng-switch-when="Use">{{$cellTextCtrl.risk.name}}</div>
+    <div ng-switch-when="Make/Model">{{$cellTextCtrl.risk.aircraftMake.name}} {{$cellTextCtrl.risk.name}}</div>
+    <div ng-switch-default>{{$cellTextCtrl.risk.currency.name}}</div>
+</div>

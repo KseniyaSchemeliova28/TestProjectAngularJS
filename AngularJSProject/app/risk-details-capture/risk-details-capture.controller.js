@@ -4,11 +4,6 @@ class riskDetailsCaptureController{
         this.name = 'riskDetailsCapture';
         this._riskService = riskDetailsCaptureService;
 
-        this.headers = [{name: "#"}, {name: "Reg No"}, {name: "Make/Model"}, {name: "Use"}, {name: "Seats c/p"}, {name: "Hull"},
-            {name: "TLO"}, {name: "Hull War"}, {name: "Hull Ccy"}, {name: "Hull Value"}, {name: "TLO Value"}, {name: "Hull DED"},
-            {name: "Hull Deduction"}, {name: "Hull War Deductions"}, {name: "Liab CCy"}, {name: "Liab Limit"},
-            {name: "PA: Ccy"}, {name: "PA Limit"}, {name: "AVN 52E DED"}, {name: "Liability Deduction"}];
-
         this.riskDetailsCapture = [];
         this.editMode = false;
         const riskDetails = this._riskService.getRisks();
@@ -23,6 +18,26 @@ class riskDetailsCaptureController{
                 i++;
             }
         });
+        this.headers = [{name: "#", type: 'number', property: ''},
+            {name: "Reg No", type: 'text', propertySum: 1, property: 'registrationNumber'},
+            {name: "Make/Model", type: 'text', propertySum: 3, property: 'aircraftModel'}, //todo
+            {name: "Use", type: 'text', propertySum: 2, property: 'purposeOfUse'},
+            {name: "Seats c/p", type: 'seats', propertySum: 2, property: 'crewSeats'}, //todo
+            {name: "Hull", type: 'bool', property: 'hullCoverage'},
+            {name: "TLO", type: 'bool', property: 'hullCoverage'},
+            {name: "Hull War", type: 'bool', property: 'hullCoverage'},
+            {name: "Hull Ccy", type: 'text', property: 'hullCoverage'},
+            {name: "Hull property", type: 'number', property: 'hullCoverage'},
+            {name: "TLO property", type: 'number', property: 'hullCoverage'},
+            {name: "Hull DED", type: 'number', property: 'hullCoverage'},
+            {name: "Hull Deduction", type: 'number', property: 'hullCoverage'},
+            {name: "Hull War Deductions", type: 'number', property: 'hullCoverage'},
+            {name: "Liab CCy", type: 'text', property: 'liabilityCoverage'},
+            {name: "Liab Limit", type: 'number', property: 'liabilityCoverage'},
+            {name: "PA: Ccy", type: 'text', property: 'personalAccidentCoverage'},
+            {name: "PA Limit", type: 'number', property: 'personalAccidentCoverage'},
+            {name: "AVN 52E DED", type: 'number', property: 'personalAccidentCoverage'},
+            {name: "Liability Deduction", type: 'number', property: 'personalAccidentCoverage'}];
     }
 
     onClickedPage(number) {
