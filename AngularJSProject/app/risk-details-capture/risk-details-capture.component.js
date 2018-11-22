@@ -1,11 +1,12 @@
-import riskDetailsCaptureController from "./risk-details-capture.controller";
+import controller from './risk-details-capture.controller';
+import template from './risk-details-capture.html';
+import './risk-details-capture.less'
 
-
-
-module.exports = {
-    template: require('./risk-details-capture.component.html'),
-    controller: riskDetailsCaptureController,
+const RiskDetailsCaptureComponent = {
+    template,
+    controller,
     controllerAs: '$riskDetailsCtrl',
-    styles: [ require('./risk-details-capture.component.less')],
     bindings: {}
 };
+
+export default RiskDetailsCaptureComponent;

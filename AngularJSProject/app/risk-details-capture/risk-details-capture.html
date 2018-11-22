@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-5"><h1>Risk Details Capture</h1></div>
+</div>
+
+<div>
+    <div class="row block-button">
+        <div class="col-md-3 col-md-offset-9 button-fixed">
+            <button ng-show="!$riskDetailsCtrl.editMode" class="button-edit-mode btn-primary btn"
+                    ng-click="$riskDetailsCtrl.openEditMode($event)">Edit Mode
+            </button>
+            <button ng-show="$riskDetailsCtrl.editMode" class="button-edit-mode btn-info btn"
+                    ng-click="$riskDetailsCtrl.saveRiskDetails()">Save
+            </button>
+            <button ng-show="$riskDetailsCtrl.editMode" class="button-edit-mode btn-info btn"
+                    ng-click="$riskDetailsCtrl.exitWithoutChanges()">Exit without saving
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="risk-table">
+                <table class="table-striped table">
+                    <thead>
+                    <tr>
+                        <th class="header">#</th>
+                        <th class="header" ng-repeat="coll in $riskDetailsCtrl.collumns">{{coll.header}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="risk in $riskDetailsCtrl.riskDetailsCapture">
+                        <td>{{$index + 1}}</td>
+                        <td ng-repeat="coll in $riskDetailsCtrl.collumns">
+                            <div ng-switch="coll.type">
+                                <cell-seats ng-switch-when="seats" item="risk[coll.name]" coll="coll"
+                                            edit-mode="$riskDetailsCtrl.editMode"></cell-seats>
+                                <cell-text ng-switch-when="text" item="risk[coll.name]" coll="coll"
+                                           edit-mode="$riskDetailsCtrl.editMode"></cell-text>
+                                <cell-number ng-switch-when="number" item="risk[coll.name]" coll="coll"
+                                             edit-mode="$riskDetailsCtrl.editMode"></cell-number>
+                                <cell-percentage ng-switch-when="percent" item="risk[coll.name]" coll="coll"
+                                                 edit-mode="$riskDetailsCtrl.editMode"></cell-percentage>
+                                <cell-bool ng-switch-when="bool" item="risk[coll.name]" coll="coll"
+                                           edit-mode="$riskDetailsCtrl.editMode"></cell-bool>
+                                <cell-object ng-switch-when="object" item="risk[coll.name]" coll="coll"
+                                             edit-mode="$riskDetailsCtrl.editMode"></cell-object>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-5 button-fixed">
+            <ul class="paging pagination">
+                <li><a ng-click="$riskDetailsCtrl.onClickedPage('previous')">Previous</a></li>
+                <li ng-repeat="page in $riskDetailsCtrl.pages" ng-class="$riskDetailsCtrl.getClassForPaging(page)"><a
+                        ng-click="$riskDetailsCtrl.onClickedPage(page)">{{page+1}}</a></li>
+                <li><a ng-click="$riskDetailsCtrl.onClickedPage('next')">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

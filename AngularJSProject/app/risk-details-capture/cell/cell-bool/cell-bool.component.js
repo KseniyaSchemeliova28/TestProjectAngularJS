@@ -1,5 +1,6 @@
 import template from './cell-bool.html'
 import controller from './cell-bool.controller'
+import './cell-bool.less';
 
 const Component = {
     template,
@@ -9,8 +10,7 @@ const Component = {
         item: '=',
         coll: '<',
         editMode: '<'
-    },
-    styles: [require('./cell-bool.less')]
+    }
 };
 
 export default Component;

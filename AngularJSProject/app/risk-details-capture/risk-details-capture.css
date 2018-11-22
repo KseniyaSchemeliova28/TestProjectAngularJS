@@ -1,16 +1,12 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap/dist/css/bootstrap.css";
-
 .header {
   padding: 7px 17px 7px 3px;
   background-color: #9acfea;
-
 }
-
 .risk-table {
   min-height: 480px;
 }
-
 table {
   margin-top: 20px;
   min-width: 100%;
@@ -18,43 +14,28 @@ table {
   white-space: nowrap;
   overflow: hidden;
 }
-
 input {
   width: 70px;
-  &[type="text"], &[type="number"]{
-    max-height: 20px;
-    width: 100px;
-  }
 }
-
+input[type="text"],
+input[type="number"] {
+  max-height: 20px;
+  width: 100px;
+}
 td {
   padding: 10px !important;
 }
-
 .button-edit-mode {
   float: right;
   margin-right: 10px;
 }
-
 .block-button {
   margin-bottom: 20px;
 }
-
 .button-fixed {
-  position:fixed;
+  position: fixed;
 }
-
-
 .paging {
   cursor: pointer;
 }
-
-.checkbox {
-  width: 40px;
-  height: 14px;
-}
-
-.check {
-  background: url('../assets/images/ok.png') center no-repeat;
-  background-size: 15px 15px;
-}
+/*# sourceMappingURL=risk-details-capture.css.map */

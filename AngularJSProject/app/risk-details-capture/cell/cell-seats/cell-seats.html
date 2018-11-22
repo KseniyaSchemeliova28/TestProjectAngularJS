@@ -5,6 +5,8 @@
     <div>{{$cellSeatsCtrl.item.crewSeats}}/{{$cellSeatsCtrl.item.passengerSeats}}</div>
 
     <div ng-if="!$cellSeatsCtrl.coll.readonly" style="display: inline-flex;">
-        <input  class="form-control" type="number" ng-model="$cellSeatsCtrl.item.crewSeats">/<input class="form-control" type="number" ng-model="$cellSeatsCtrl.item.passengerSeats">
+        <input class="form-control" type="number" ng-model="$cellSeatsCtrl.item.crewSeats">/<input class="form-control"
+                                                                                                   type="number"
+                                                                                                   ng-model="$cellSeatsCtrl.item.passengerSeats">
     </div>
 </div>

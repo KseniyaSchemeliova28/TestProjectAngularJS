@@ -1,7 +1,8 @@
 class riskDetailsCaptureController {
     constructor(riskDetailsCaptureService) {
         'ngInject'
-        this.name = 'riskDetailsCapture';
+
+        this.name = 'RiskDetailsCaptureComponent';
         this._riskService = riskDetailsCaptureService;
 
         this.riskDetailsCapture = [];
@@ -20,7 +21,7 @@ class riskDetailsCaptureController {
             }
         });
 
-        this.colls = [
+        this.collumns = [
             {name: 'registrationNumber', header: "Reg No", type: 'text', readonly: false},
             {name: 'aircraftMakeModel', header: "Make/Model", type: 'object', readonly: true},
             {name: 'use', header: "Use", type: 'text', readonly: true},
@@ -60,13 +61,13 @@ class riskDetailsCaptureController {
     saveRiskDetails() {
         this._riskService.saveRisks(this.riskDetailsCapture);
         this.getRiskDetails();
-        this.editMode = !this.editMode;
+        this.openEditMode();
     };
 
     exitWithoutChanges() {
         if (confirm('You are about to leave the page. Unsaved data will be lost. Do you want to proceed?')) {
             this.getRiskDetails();
-            this.editMode = !this.editMode;
+            this.openEditMode();
         }
     };
 
