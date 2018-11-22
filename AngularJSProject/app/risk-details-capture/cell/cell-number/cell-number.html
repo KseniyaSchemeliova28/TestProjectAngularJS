@@ -1,9 +1,1 @@
-<div ng-switch="$cellNumberCtrl.coll.name">
-    <div ng-switch-when="Hull property">{{$cellNumberCtrl.risk.hullValue}}</div>
-    <div ng-switch-when="TLO property">{{$cellNumberCtrl.risk.tloLimit}}</div>
-    <div ng-switch-when="Hull DED">{{$cellNumberCtrl.risk.hullDeductiblePercentage}}</div>
-    <div ng-switch-when="Hull Deduction">{{$cellNumberCtrl.risk.hullDeductiblePercentage}}</div>
-    <div ng-switch-when="Hull War Deductions">{{$cellNumberCtrl.risk.hullDeductiblePercentage}}</div>
-    <div ng-switch-when="Liab Limit">{{$cellNumberCtrl.risk.thirdPartyLimit}}</div>
-    <div ng-switch-default>{{$cellNumberCtrl.risk.crewLimit}}</div>
-</div>
+<div>{{$cellNumberCtrl.risk}}</div>

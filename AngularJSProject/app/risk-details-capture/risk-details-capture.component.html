@@ -16,72 +16,34 @@
             </button>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-12">
             <div class="risk-table">
                 <table class="table-striped table">
+                    <thead>
                     <tr>
-                        <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}}</th>
+                        <th class="header">#</th>
+                        <th class="header" ng-repeat="coll in riskCtrl.colls">{{coll.header}}</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr ng-repeat="risk in riskCtrl.riskDetailsCapture">
-                        <td> {{$index + 1}}</td>
-                        <td ng-show="!riskCtrl.editMode">{{risk.registrationNumber}}</td>
-                        <td ng-show="riskCtrl.editMode"><input type="text" class="form-control"
-                                                               ng-model="risk.registrationNumber">
+                        <td>{{$index + 1}}</td>
+                        <td ng-repeat="coll in riskCtrl.colls">
+                            <div ng-switch="coll.type">
+                                <cell-seats ng-switch-when="seats" item="risk[coll.name]" cell="coll"></cell-seats>
+                                <cell-text ng-switch-when="text" risk="risk[coll.name]" cell="coll"></cell-text>
+                                <cell-number ng-switch-when="number" risk="risk[coll.name]" cell="coll"></cell-number>
+                                <cell-bool ng-switch-when="bool" item="risk[coll.name]" cell="coll"></cell-bool>
+                            </div>
                         </td>
-
-                        <td>{{risk.aircraftModel.aircraftMake.name}} {{risk.aircraftModel.name}}</td>
-                        <td>{{risk.purposeOfUse.name}}</td>
-                        <td>{{risk.crewSeats}}/{{risk.passengerSeats}}</td>
-
-                        <td ng-show="risk.hullCoverage.hullCoverageEnabled" class="check"></td>
-                        <td ng-hide="risk.hullCoverage.hullCoverageEnabled"></td>
-
-                        <td ng-show="risk.hullCoverage.tloCoverageEnabled" class="check"></td>
-                        <td ng-hide="risk.hullCoverage.tloCoverageEnabled"></td>
-
-                        <td ng-show="risk.hullCoverage.hullWarCoverageEnabled && !riskCtrl.editMode" class="check"></td>
-                        <td ng-hide="risk.hullCoverage.hullWarCoverageEnabled || riskCtrl.editMode"></td>
-                        <td ng-if="riskCtrl.editMode">
-                            <input type="checkbox" ng-model="risk.hullCoverage.hullWarCoverageEnabled">
-                        </td>
-                        <td>{{risk.hullCoverage.currency.name}}</td>
-
-                        <td ng-show="!riskCtrl.editMode">{{risk.hullCoverage.hullValue}}</td>
-                        <td ng-show="riskCtrl.editMode"><input class="form-control" type="number"
-                                                               ng-model="risk.hullCoverage.hullValue"></td>
-
-                        <td>{{risk.hullCoverage.tloLimit}}</td>
-                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-
-                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-                        <td>{{risk.hullCoverage.hullDeductiblePercentage}}</td>
-                        <td>{{risk.liabilityCoverage.currency.name}}</td>
-                        <td>{{risk.liabilityCoverage.thirdPartyLimit}}</td>
-                        <td>{{risk.personalAccidentCoverage.currency.name}}</td>
-                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
-                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
-                        <td>{{risk.personalAccidentCoverage.crewLimit}}</td>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    <table class="table-striped table">
-        <thead>
-        <tr>
-            <th class="header" ng-repeat="header in riskCtrl.headers">{{header.name}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="r in riskCtrl.riskDetailsCapture">
-            <td ng-repeat="q in riskCtrl.headers">
-                <cell risk="r[q.property]" header="q"></cell>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 
 
     <div class="row">

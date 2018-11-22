@@ -6,9 +6,9 @@ const Component = {
     controller,
     controllerAs: '$cellBoolCtrl',
     bindings: {
-        risk: '<',
-        coll: '<'
-    }
+        item: '<'
+    },
+    style: [require('./cell-bool.less')]
 };
 
 export default Component;

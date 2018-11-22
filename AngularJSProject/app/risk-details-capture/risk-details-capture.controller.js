@@ -8,9 +8,11 @@ class riskDetailsCaptureController{
         this.editMode = false;
         const riskDetails = this._riskService.getRisks();
         this.currentPage = 0;
+
         riskDetails.then((risk) => {
-            this.riskDetailsCapture = risk.data.result.slice(this.currentPage * 10, this.currentPage * 10 + 10);
-            this.numberOfPage = risk.data.result.length / 10;
+            console.log(risk);
+            this.riskDetailsCapture = risk.slice(this.currentPage * 10, this.currentPage * 10 + 10);
+            this.numberOfPage = risk.length / 10;
             this.pages = [];
             let i = 0;
             while (i < this.numberOfPage) {
@@ -18,26 +20,27 @@ class riskDetailsCaptureController{
                 i++;
             }
         });
-        this.headers = [{name: "#", type: 'number', property: ''},
-            {name: "Reg No", type: 'text', propertySum: 1, property: 'registrationNumber'},
-            {name: "Make/Model", type: 'text', propertySum: 3, property: 'aircraftModel'}, //todo
-            {name: "Use", type: 'text', propertySum: 2, property: 'purposeOfUse'},
-            {name: "Seats c/p", type: 'seats', propertySum: 2, property: 'crewSeats'}, //todo
-            {name: "Hull", type: 'bool', property: 'hullCoverage'},
-            {name: "TLO", type: 'bool', property: 'hullCoverage'},
-            {name: "Hull War", type: 'bool', property: 'hullCoverage'},
-            {name: "Hull Ccy", type: 'text', property: 'hullCoverage'},
-            {name: "Hull property", type: 'number', property: 'hullCoverage'},
-            {name: "TLO property", type: 'number', property: 'hullCoverage'},
-            {name: "Hull DED", type: 'number', property: 'hullCoverage'},
-            {name: "Hull Deduction", type: 'number', property: 'hullCoverage'},
-            {name: "Hull War Deductions", type: 'number', property: 'hullCoverage'},
-            {name: "Liab CCy", type: 'text', property: 'liabilityCoverage'},
-            {name: "Liab Limit", type: 'number', property: 'liabilityCoverage'},
-            {name: "PA: Ccy", type: 'text', property: 'personalAccidentCoverage'},
-            {name: "PA Limit", type: 'number', property: 'personalAccidentCoverage'},
-            {name: "AVN 52E DED", type: 'number', property: 'personalAccidentCoverage'},
-            {name: "Liability Deduction", type: 'number', property: 'personalAccidentCoverage'}];
+
+        this.colls = [
+            {name: 'registrationNumber', header: "Reg No", type: 'text', readonly: false},
+            {name: 'aircraftMakeModel', header: "Make/Model", type: 'text', readonly: true},
+            {name: 'use', header: "Use", type: 'text', readonly: true},
+            {name: 'seats', header: "Seats c/p", type: 'seats', readonly: true},
+            {name: 'hullCoverageEnabled', header: "Hull", type: 'bool', readonly: true},
+            {name: 'tloCoverageEnabled', header: "TLO", type: 'bool', readonly: true},
+            {name: 'hullWarCoverageEnabled', header: "Hull War", type: 'bool', readonly: false},
+            {name: 'hullCoverageCurrency', header: "Hull Ccy", type: 'text', readonly: true},
+            {name: 'hullValue', header: "Hull property", type: 'number', readonly: false},
+            {name: 'tloLimit', header: "TLO property", type: 'number', readonly: true},
+            {name: 'hullDeductible', header: "Hull DED", type: 'number', readonly: true},
+            {name: 'hullDeductible', header: "Hull Deduction", type: 'number', readonly: true},
+            {name: 'hullDeductible', header: "Hull War Deductions", type: 'number', readonly: true},
+            {name: 'liabilityCoverageCurrency', header: "Liab CCy", type: 'text', readonly: true},
+            {name: 'liabilityLimit', header: "Liab Limit", type: 'number', readonly: true},
+            {name: 'paCoverageCurrency', header: "PA: Ccy", type: 'text', readonly: true},
+            {name: 'paLimit', header: "PA Limit", type: 'number', readonly: true},
+            {name: 'AVN52Deductible', header: "AVN 52E DED", type: 'number',  readonly: true},
+            {name: 'hullDeductible', header: "Liability Deduction", type: 'number', readonly: true}];
     }
 
     onClickedPage(number) {

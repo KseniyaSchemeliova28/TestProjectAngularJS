@@ -6,8 +6,8 @@ const Component = {
     controller,
     controllerAs: '$cellTextCtrl',
     bindings: {
-        coll: '<',
-        risk: '<'
+        cell: '<',
+        risk: '='
     }
 
 };
