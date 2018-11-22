@@ -1,1 +1,9 @@
-<div>{{$cellNumberCtrl.risk}}</div>
+<div ng-show="!$cellNumberCtrl.editMode">{{$cellNumberCtrl.item}}</div>
+
+<div ng-if="$cellNumberCtrl.editMode">
+    <div ng-if="$cellNumberCtrl.coll.readonly">{{$cellNumberCtrl.item}}</div>
+
+    <div ng-if="!$cellNumberCtrl.coll.readonly">
+        <input class="form-control" type="number" ng-model="$cellNumberCtrl.item">
+    </div>
+</div>

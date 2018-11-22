@@ -6,9 +6,11 @@ const Component = {
     controller,
     controllerAs: '$cellBoolCtrl',
     bindings: {
-        item: '<'
+        item: '=',
+        coll: '<',
+        editMode: '<'
     },
-    style: [require('./cell-bool.less')]
+    styles: [require('./cell-bool.less')]
 };
 
 export default Component;

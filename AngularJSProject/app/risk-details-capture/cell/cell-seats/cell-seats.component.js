@@ -6,8 +6,9 @@ const Component = {
     controller,
     controllerAs: '$cellSeatsCtrl',
     bindings: {
-        cell: '<',
-        item: '<'
+        coll: '<',
+        item: '<',
+        editMode: '<'
     }
 
 };

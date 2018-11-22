@@ -1,0 +1,9 @@
+<div ng-show="!$cellObjCtrl.editMode">{{$cellObjCtrl.item.aircraftMake}} {{$cellObjCtrl.item.aircraftModel}}</div>
+
+<div ng-if="$cellObjCtrl.editMode">
+    <div ng-if="$cellObjCtrl.coll.readonly"> {{$cellObjCtrl.item.aircraftMake}} {{$cellObjCtrl.item.aircraftModel}} </div>
+
+    <div ng-if="!$cellObjCtrl.coll.readonly">
+        <input class="form-control" type="text" ng-model="$cellObjCtrl.item.aircraftMake"> <input  type="text" ng-model="$cellObjCtrl.item.aircraftModel">
+    </div>
+</div>

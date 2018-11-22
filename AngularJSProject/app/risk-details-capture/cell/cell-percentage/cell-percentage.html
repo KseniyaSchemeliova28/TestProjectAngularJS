@@ -1,0 +1,8 @@
+<div ng-show="!$cellPercentCtrl.editMode && $cellPercentCtrl.item">{{$cellPercentCtrl.item}}%</div>
+
+<div ng-if="$cellPercentCtrl.editMode">
+
+    <div ng-if="$cellPercentCtrl.item && $cellPercentCtrl.coll.readonly">{{$cellPercentCtrl.item}}%</div>
+
+    <input ng-if="!$cellPercentCtrl.coll.readonly" class="form-control" type="number" ng-model="$cellPercentCtrl.item">
+</div>

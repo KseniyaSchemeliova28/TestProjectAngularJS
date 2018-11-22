@@ -1,10 +1,10 @@
-import template from './cell-number.html'
-import controller from './cell-number.controller'
+import template from './cell-percentage.html'
+import controller from './cell-percentage.controller'
 
 const Component = {
     template,
     controller,
-    controllerAs: '$cellNumberCtrl',
+    controllerAs: '$cellPercentCtrl',
     bindings: {
         coll: '<',
         item: '=',

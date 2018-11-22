@@ -1,4 +1,4 @@
-class riskDetailsCaptureController{
+class riskDetailsCaptureController {
     constructor(riskDetailsCaptureService) {
         'ngInject'
         this.name = 'riskDetailsCapture';
@@ -10,8 +10,7 @@ class riskDetailsCaptureController{
         this.currentPage = 0;
 
         riskDetails.then((risk) => {
-            console.log(risk);
-            this.riskDetailsCapture = risk.slice(this.currentPage * 10, this.currentPage * 10 + 10);
+            this.riskDetailsCapture = angular.copy(risk.slice(this.currentPage * 10, this.currentPage * 10 + 10));
             this.numberOfPage = risk.length / 10;
             this.pages = [];
             let i = 0;
@@ -23,7 +22,7 @@ class riskDetailsCaptureController{
 
         this.colls = [
             {name: 'registrationNumber', header: "Reg No", type: 'text', readonly: false},
-            {name: 'aircraftMakeModel', header: "Make/Model", type: 'text', readonly: true},
+            {name: 'aircraftMakeModel', header: "Make/Model", type: 'object', readonly: true},
             {name: 'use', header: "Use", type: 'text', readonly: true},
             {name: 'seats', header: "Seats c/p", type: 'seats', readonly: true},
             {name: 'hullCoverageEnabled', header: "Hull", type: 'bool', readonly: true},
@@ -33,14 +32,14 @@ class riskDetailsCaptureController{
             {name: 'hullValue', header: "Hull property", type: 'number', readonly: false},
             {name: 'tloLimit', header: "TLO property", type: 'number', readonly: true},
             {name: 'hullDeductible', header: "Hull DED", type: 'number', readonly: true},
-            {name: 'hullDeductible', header: "Hull Deduction", type: 'number', readonly: true},
-            {name: 'hullDeductible', header: "Hull War Deductions", type: 'number', readonly: true},
+            {name: 'hullDeductible', header: "Hull Deduction", type: 'percent', readonly: true},
+            {name: 'hullDeductible', header: "Hull War Deductions", type: 'percent', readonly: true},
             {name: 'liabilityCoverageCurrency', header: "Liab CCy", type: 'text', readonly: true},
             {name: 'liabilityLimit', header: "Liab Limit", type: 'number', readonly: true},
             {name: 'paCoverageCurrency', header: "PA: Ccy", type: 'text', readonly: true},
             {name: 'paLimit', header: "PA Limit", type: 'number', readonly: true},
-            {name: 'AVN52Deductible', header: "AVN 52E DED", type: 'number',  readonly: true},
-            {name: 'hullDeductible', header: "Liability Deduction", type: 'number', readonly: true}];
+            {name: 'AVN52Deductible', header: "AVN 52E DED", type: 'number', readonly: true},
+            {name: 'hullDeductible', header: "Liability Deduction", type: 'percent', readonly: true}];
     }
 
     onClickedPage(number) {
@@ -48,7 +47,7 @@ class riskDetailsCaptureController{
             this.currentPage = number;
         } else if (this.currentPage > 0 && number === 'previous') {
             this.currentPage--;
-        } else if (this.currentPage <= this.numberOfPage-1 && number === 'next') {
+        } else if (this.currentPage <= this.numberOfPage - 1 && number === 'next') {
             this.currentPage++;
         }
         this.getRiskDetails();
@@ -58,20 +57,21 @@ class riskDetailsCaptureController{
         this.editMode = !this.editMode;
     };
 
-    saveRiskDetails(){
+    saveRiskDetails() {
         this._riskService.saveRisks(this.riskDetailsCapture);
-        this.editMode=!this.editMode;
+        this.getRiskDetails();
+        this.editMode = !this.editMode;
     };
 
-    exitWithoutChanges(){
-        if(confirm('You are about to leave the page. Unsaved data will be lost. Do you want to proceed?')){
-            this.editMode=!this.editMode;
+    exitWithoutChanges() {
+        if (confirm('You are about to leave the page. Unsaved data will be lost. Do you want to proceed?')) {
+            this.getRiskDetails();
+            this.editMode = !this.editMode;
         }
-        this.getRiskDetails();
     };
 
     getRiskDetails() {
-        this.riskDetailsCapture =this._riskService.getLoadedRisks().slice(this.currentPage * 10, this.currentPage * 10 + 10);
+        this.riskDetailsCapture = this._riskService.getLoadedRisks().slice(this.currentPage * 10, this.currentPage * 10 + 10);
         this.numberOfPage = this._riskService.getLoadedRisks().length / 10;
         this.pages = [];
         let i = 0;
@@ -81,10 +81,10 @@ class riskDetailsCaptureController{
         }
     }
 
-    getClassForPaging(page){
-        if(page === this.currentPage){
+    getClassForPaging(page) {
+        if (page === this.currentPage) {
             return 'active';
-        }else return '';
+        } else return '';
     }
 }
 

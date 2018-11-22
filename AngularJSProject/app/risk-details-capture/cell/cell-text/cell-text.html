@@ -1,3 +1,6 @@
-<div ng-hide="$cellTextCtrl.cell.name === 'aircraftMakeModel'">{{$cellTextCtrl.risk}}</div>
-<div ng-show="$cellTextCtrl.cell.name === 'aircraftMakeModel'">{{$cellTextCtrl.risk.aircraftMake}} {{$cellTextCtrl.risk.aircraftModel}}</div>
+<div ng-show="!$cellTextCtrl.editMode">{{$cellTextCtrl.item}}</div>
 
+<div ng-if="$cellTextCtrl.editMode">
+    <div ng-if="$cellTextCtrl.coll.readonly">{{$cellTextCtrl.item}}</div>
+    <input ng-if="!$cellTextCtrl.coll.readonly" class="form-control" maxlength="200" type="text" ng-model="$cellTextCtrl.item">
+</div>

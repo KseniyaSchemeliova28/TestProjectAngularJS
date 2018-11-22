@@ -1,1 +1,9 @@
-<div>{{$cellBoolCtrl.item}}</div>
+<div ng-show="$cellBoolCtrl.item && !$cellBoolCtrl.editMode" class="check"></div>
+<div ng-hide="$cellBoolCtrl.item || $cellBoolCtrl.editMode"></div>
+
+<div ng-if="$cellBoolCtrl.editMode">
+    <div ng-show="$cellBoolCtrl.item && $cellBoolCtrl.coll.readonly" class="check"></div>
+    <div ng-hide="$cellBoolCtrl.item && $cellBoolCtrl.coll.readonly"></div>
+
+    <input ng-if="!$cellBoolCtrl.coll.readonly" type="checkbox" ng-model="$cellBoolCtrl.item">
+</div>
