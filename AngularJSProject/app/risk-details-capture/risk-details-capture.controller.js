@@ -54,7 +54,7 @@ class riskDetailsCaptureController {
         this.getRiskDetails();
     };
 
-    openEditMode(e) {
+    openEditMode() {
         this.editMode = !this.editMode;
     };
 

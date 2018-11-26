@@ -10,16 +10,13 @@ export default class riskDetailsCaptureService {
     }
 
     getRisks() {
-        let deferred = this._$q.defer();
-        this._$http.get(this.url).then((riskDetails) => {
+        return this._$http.get(this.url).then((riskDetails) => {
             riskDetails.data.result.forEach((risk) => {
                 this.aircraftModels.push(new AircraftModel(risk));
             });
-            deferred.resolve(this.aircraftModels);
-        }, (response) => {
-            deferred.reject(response.status);
-        });
-        return deferred.promise;
+
+            return this.aircraftModels;
+        }, (response) => this._$q.reject(response.status));
     }
 
     getLoadedRisks() {
