@@ -1,5 +1,5 @@
 class cellBoolController {
-    constructor(){//test #4 feature
+    constructor(){
     }
 }
 

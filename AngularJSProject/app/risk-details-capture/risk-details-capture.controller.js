@@ -10,7 +10,6 @@ class riskDetailsCaptureController {
         const riskDetails = this._riskService.getRisks();
         this.currentPage = 0;
 
-        //test #2
         riskDetails.then((risk) => {
             this.riskDetailsCapture = angular.copy(risk.slice(this.currentPage * 10, this.currentPage * 10 + 10));
             this.numberOfPage = risk.length / 10;
@@ -21,8 +20,7 @@ class riskDetailsCaptureController {
                 i++;
             }
         });
-
-        //test git extensions
+        
         this.collumns = [
             {name: 'registrationNumber', header: "Reg No", type: 'text', readonly: false},
             {name: 'aircraftMakeModel', header: "Make/Model", type: 'object', readonly: true},
