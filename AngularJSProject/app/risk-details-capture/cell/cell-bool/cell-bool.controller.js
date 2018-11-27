@@ -1,5 +1,5 @@
 class cellBoolController {
-    constructor(){  //test #2
+    constructor(){//test #4 master
     }
 }
 
