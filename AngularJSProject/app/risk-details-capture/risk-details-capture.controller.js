@@ -21,6 +21,7 @@ class riskDetailsCaptureController {
             }
         });
 
+        //test git extensions
         this.collumns = [
             {name: 'registrationNumber', header: "Reg No", type: 'text', readonly: false},
             {name: 'aircraftMakeModel', header: "Make/Model", type: 'object', readonly: true},
