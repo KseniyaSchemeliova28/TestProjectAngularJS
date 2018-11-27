@@ -10,7 +10,7 @@ class riskDetailsCaptureController {
         const riskDetails = this._riskService.getRisks();
         this.currentPage = 0;
 
-        //test #2
+        //test #66
         riskDetails.then((risk) => {
             this.riskDetailsCapture = angular.copy(risk.slice(this.currentPage * 10, this.currentPage * 10 + 10));
             this.numberOfPage = risk.length / 10;
