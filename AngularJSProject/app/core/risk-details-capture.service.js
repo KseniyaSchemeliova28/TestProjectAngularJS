@@ -9,6 +9,7 @@ export default class riskDetailsCaptureService {
         this.aircraftModels = [];
     }
 
+    // get risks
     getRisks() {
         return this._$http.get(this.url).then((riskDetails) => {
             riskDetails.data.result.forEach((risk) => {
